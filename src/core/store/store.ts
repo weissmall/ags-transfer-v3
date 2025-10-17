@@ -16,7 +16,9 @@ export default class Store<T> {
   }
 
   public set(value: T) {
-    this.state[1](value);
+    console.log("Value to set:", value)
+    const [_, setState] = this.state;
+    setState(value);
   }
 
   public setPartial(value: Partial<T>, preserveNull: boolean = false) {

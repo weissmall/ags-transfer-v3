@@ -1,6 +1,6 @@
 import WeatherModel from "~/src/features/weather/model/weather-model";
 import WeatherDTO from "~/src/features/weather/model/weather-dto";
-import Store from "~/src/core/store/store";
+import BaseVM from "~/src/core/mvvm/base-vm";
 
 type WeatherState = {
   temperature?: string;
@@ -8,17 +8,12 @@ type WeatherState = {
   humidity?: string;
 }
 
-export default class WeatherVM {
+export default class WeatherVM extends BaseVM<WeatherState> {
   private model: WeatherModel;
-  private store: Store<WeatherState>;
-
-  get state() {
-    return this.store.getAgsState();
-  }
 
   constructor(model?: WeatherModel) {
+    super({})
     this.model = model ?? new WeatherModel();
-    this.store = new Store({} as WeatherState);
 
     this.initWeather().then(() => {
       console.log("Initialized weather");
@@ -39,7 +34,7 @@ export default class WeatherVM {
   }
 
   private setWeather(w: WeatherDTO) {
-    this.store.set({
+    this.state.set({
       temperature: `Today's in ${w.name} is ${w.weather[0].main} with temperature ${w.main.temp}°C`,
       wind: `Wind speed in your location is ${w.wind.speed}kmh`,
       humidity: `And Humidity is ${w.main.humidity}%`,

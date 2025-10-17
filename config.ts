@@ -27,7 +27,7 @@ export type Config = {
 }
 
 const config = {
-  devMode: true,
+  appTitle: "ags-transfer",
   notifications: {
     enabled: true,
     dev: false,

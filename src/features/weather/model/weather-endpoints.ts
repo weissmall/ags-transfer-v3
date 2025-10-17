@@ -11,6 +11,7 @@ export default class WeatherEndpoints extends Endpoints {
   }
 
   public getWeather(): URL {
+    console.log(this.config)
     return this.build(
       this.config.weather.apiSettings.baseUrl,
       {

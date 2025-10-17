@@ -60,7 +60,7 @@ export default class TimeVM extends BaseVM<TimeState> {
       dayDate,
       weekDay: date.getDay(),
       weekDots:
-        [...new Array(date.getDay()).fill(""), ...new Array(7 - date.getDay()).fill("")].join(' '),
+        [...new Array(date.getDay()).fill("●"), ...new Array(7 - date.getDay()).fill("○")].join(' '),
     })
   }
 }

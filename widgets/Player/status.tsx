@@ -1,13 +1,10 @@
 import { Astal, Gdk, Gtk } from "ags/gtk4"
-import StatusController from "../core/status-controller"
-import { createBinding } from "ags";
 import WeatherConkyView from "~/src/features/weather/view/weather-conky-view";
+import TimeConkyView from "~/src/features/time/view/time-conky-view";
 
 export default function StatusWindow(gdkmonitor: Gdk.Monitor) {
-  const sc = new StatusController();
   return <window
     visible
-    type="status"
     anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT}
     layer={Astal.Layer.BACKGROUND}
     gdkmonitor={gdkmonitor}
@@ -19,29 +16,14 @@ export default function StatusWindow(gdkmonitor: Gdk.Monitor) {
     heightRequest={50}
     widthRequest={50}
     cssClasses={["status-desc"]}
-    child={(
-      <box
-        vertical
-        halign={Gtk.Align.START}
-        cssClasses={["status"]}
-      >
-        <label
-          label={createBinding(sc.time)}
-          cssClasses={["time"]}
-          halign={Gtk.Align.START}
-        />
-        <label
-          label={bind(sc.dayDate)}
-          cssClasses={["date"]}
-          halign={Gtk.Align.START}
-        />
-        <label
-          cssClasses={["week-day"]}
-          label={bind(sc.weekDots)}
-          halign={Gtk.Align.START}
-        />
-        <WeatherConkyView />
-      </box>
-    )}
-  />
+  >
+    <box
+      orientation={Gtk.Orientation.VERTICAL}
+      halign={Gtk.Align.START}
+      cssClasses={["status"]}
+    >
+      <TimeConkyView />
+      <WeatherConkyView />
+    </box>
+  </window>
 }

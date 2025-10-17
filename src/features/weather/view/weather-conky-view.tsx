@@ -1,5 +1,4 @@
 import { Gtk } from "ags/gtk4";
-import { With } from "ags";
 import WeatherVM from "~/src/features/weather/vm/weather-vm";
 
 export default function WeatherConkyView() {
@@ -8,21 +7,20 @@ export default function WeatherConkyView() {
     orientation={Gtk.Orientation.VERTICAL}
     cssClasses={["weather"]}
   >
-    <With value={vm.state}>
-      {(state) => <>
-        <label
-          label={state.temperature}
-          halign={Gtk.Align.START}
-        />
-        <label
-          label={state.wind}
-          halign={Gtk.Align.START}
-        />
-        <label
-          label={state.humidity}
-          halign={Gtk.Align.START}
-        />
-      </>}
-    </With>
+    <label
+      visible={vm.agsState((s) => !!s.temperature)}
+      label={vm.agsState((s) => s.temperature ?? "")}
+      halign={Gtk.Align.START}
+    />
+    <label
+      visible={vm.agsState((s) => !!s.wind)}
+      label={vm.agsState((s) => s.wind ?? "")}
+      halign={Gtk.Align.START}
+    />
+    <label
+      visible={vm.agsState((s) => !!s.humidity)}
+      label={vm.agsState((s) => s.humidity ?? "")}
+      halign={Gtk.Align.START}
+    />
   </box>
 }
