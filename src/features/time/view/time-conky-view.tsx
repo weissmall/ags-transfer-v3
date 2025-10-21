@@ -3,7 +3,10 @@ import { Gtk } from "ags/gtk4";
 
 export default function TimeConkyView() {
   const vm = new TimeVM();
-  return <>
+  return <box
+    orientation={Gtk.Orientation.VERTICAL}
+    cssClasses={["time-conky"]}
+  >
     <label
       visible={vm.agsState((s) => !!s.time)}
       label={vm.agsState((s) => s.time!)}
@@ -22,5 +25,5 @@ export default function TimeConkyView() {
       cssClasses={["week-day"]}
       halign={Gtk.Align.START}
     />
-  </>
+  </box >
 }

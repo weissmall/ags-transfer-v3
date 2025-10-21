@@ -1,0 +1,13 @@
+@use "variables.scss";
+
+.conky-widget {
+  .conky {
+    margin-bottom: 90px;
+    margin-left: 70px;
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

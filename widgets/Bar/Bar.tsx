@@ -25,74 +25,11 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       <box
         hexpand
         halign={Gtk.Align.FILL}
-      >
-        {/* <Player /> */}
-      </box>
-
-      <box
-        hexpand
-        halign={Gtk.Align.CENTER}
-        cssClasses={["box-container"]}
-      >
-        <box
-          cssClasses={["left-box"]}
-        />
-        <box
-          cssClasses={["center-box-wrapper"]}
-        >
-          <Time />
-        </box>
-        <box
-          cssClasses={["right-box"]}
-        />
-      </box>
-      <box
-        hexpand
-        halign={Gtk.Align.FILL}
         cssClasses={["right"]}
       >
-        <BatteryLevel />
-        <VerticalSeparator />
         <VolumeIconButton />
         {PlayerButton(gdkmonitor)}
-        <VerticalSeparator />
-        {/* <BrightnessIconButton /> */}
-        <VerticalSeparator />
-        <Network />
-        <VerticalSeparator />
-        <SysTray />
-        <menubutton>
-          <image iconName="application-menu" />
-          <popover>
-            <box orientation={1}>
-              <box>
-                <VolumeIconButton />
-                <VolumeSlider />
-              </box>
-              {/* <box> */}
-              {/*   <BrightnessIconButton /> */}
-              {/*   <BrightnessSlider /> */}
-              {/* </box> */}
-              <button onClicked={() => refreshCSS()}>
-                <image iconName="preferences-system" />
-                <label label="Refresh CSS" />
-              </button>
-            </box>
-          </popover>
-        </menubutton>
       </box>
     </centerbox>
   </window>
-}
-
-function VerticalSeparator() {
-  return <box
-    cssClasses={['vertical-separator-box']}
-    hexpand={false}
-    vexpand={false}
-  >
-    <box
-      cssClasses={['vertical-separator']}
-    />
-  </box>
 }

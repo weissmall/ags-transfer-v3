@@ -28,7 +28,9 @@ export default function volumeCommandHandler({ inc, dec, mute }: VolumeCommandAr
       controller?.set_volume(1)
       return;
     }
+
     controller?.set_volume(newValue)
+    return;
   }
 
   if (dec) {
@@ -38,5 +40,6 @@ export default function volumeCommandHandler({ inc, dec, mute }: VolumeCommandAr
       controller.set_volume(0);
     }
     controller?.set_volume(newValue);
+    return;
   }
 }

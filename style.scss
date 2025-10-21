@@ -4,8 +4,10 @@
 @use "css/notifications.scss";
 @use "css/player.scss";
 @use "css/osd.scss";
-@use "css/status.scss";
+@use "css/conky.scss";
 @use "css/variables.scss";
+@use "css/weather.scss";
+@use "css/time.scss";
 
 $bg: #2C2C33;
 $fg: #f1f1f1;
@@ -161,4 +163,3 @@ menuitem:hover {
   min-width: 20px;
   // max-width: 20px;
 }
-

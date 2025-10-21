@@ -1,16 +1,16 @@
 @use "css/variables.scss";
 
-window.OSD {
-  box.OSD {
+.osd {
+  margin: 20px;
+  padding: 0px;
+
+  .osd-popup-view {
     border-radius: 8px;
     background-color: variables.$bg;
-    margin: 20px;
     padding: 20px;
-    // box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, .4);
   }
 
   image {
-    // font-size: 64px;
     padding-right: 8px;
   }
 

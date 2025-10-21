@@ -3,15 +3,17 @@ import BaseVM from "~/src/core/mvvm/base-vm";
 
 type TimeState = {
   time?: string;
+  time12?: string;
   dayDate?: string;
   weekDay?: number;
   weekDots?: string;
+  date: Date;
 };
 
 export default class TimeVM extends BaseVM<TimeState> {
 
   constructor() {
-    super({});
+    super({ date: new Date() });
     this.timeRefresh();
   }
 
@@ -30,21 +32,30 @@ export default class TimeVM extends BaseVM<TimeState> {
       this.setTime();
     }
 
-    if (date.getHours() == 0) {
+    if (date.getHours() != this.state.get().date.getHours()) {
       this.setDayDate();
     }
   }
 
   private setTime() {
     const date = new Date()
+
     const time = date.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     })
 
+    const time12 = date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+
     this.state.setPartial({
       time,
+      time12,
     })
   }
 
@@ -60,7 +71,7 @@ export default class TimeVM extends BaseVM<TimeState> {
       dayDate,
       weekDay: date.getDay(),
       weekDots:
-        [...new Array(date.getDay()).fill("●"), ...new Array(7 - date.getDay()).fill("○")].join(' '),
+        [...new Array(date.getDay() + 1).fill("●"), ...new Array(6 - date.getDay()).fill("○")].join(' '),
     })
   }
 }

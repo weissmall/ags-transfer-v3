@@ -7,6 +7,10 @@ export default abstract class BaseVM<T> {
     return this.state.getAgsState();
   }
 
+  public getAgsPartState<R = T>(transform: (value: T) => R) {
+    return this.agsState(transform);
+  }
+
   constructor(defaultStoreValue: T) {
     this.state = new Store(defaultStoreValue);
   }

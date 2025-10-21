@@ -5,6 +5,14 @@ export function getEnv(env: string, fallback: string): string {
   return GLib.getenv(env) ?? fallback;
 }
 
+export function getEnvBool(env: string, fallback: boolean): boolean {
+  const temp = getEnv(env, "");
+  if (temp == "") {
+    return fallback;
+  }
+  return new Boolean(temp) as boolean;
+}
+
 export function getConfig(): Config {
   return config;
 }
@@ -23,11 +31,14 @@ export type Config = {
       enabled: boolean,
       refreshInterval: number,
     },
-  }
+  },
+  conky: {
+    enabled: boolean,
+  },
 }
 
 const config = {
-  appTitle: "ags-transfer",
+  appTitle: "ags-transfer-dev",
   notifications: {
     enabled: true,
     dev: false,
@@ -68,6 +79,9 @@ const config = {
       enabled: true,
       refreshInterval: 1000 * 60 * 60,
     },
+  },
+  conky: {
+    enabled: getEnvBool("CONKY_ENABLED", false),
   },
   // const city_id = "498817"
   // const api_key = "2346fa4d5f6c0ab93c816ece6193746a"

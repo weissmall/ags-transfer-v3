@@ -40,7 +40,11 @@ export default class CommandsHandler {
   private executeCommand(command: string, response: CommandResponseFn, args: any) {
     const handler = this.commands.get(command);
     if (handler) {
-      return response(handler(args));
+      const result = handler(args);
+      if (typeof result == "string") {
+        return response(result);
+      }
+      return response("Done");
     }
 
     throw new Error(`Handler for command "${command} not found"`);
