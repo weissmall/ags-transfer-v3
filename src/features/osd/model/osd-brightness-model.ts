@@ -8,7 +8,7 @@ export default class OsdBrightnessModel {
     // this.speaker = Wp.get_default().get_default_speaker();
   }
 
-  public onBrightness(callback: (value: number, icon: string) => void) {
+  public onBrightness(_callback: (value: number, icon: string) => void) {
     // brightness.connect("notify", (src, _) => {
     //   show(src.screen, "display-brightness-symbolic")
     // });

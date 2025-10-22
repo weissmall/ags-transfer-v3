@@ -1,24 +1,24 @@
-import { Gtk } from "astal/gtk4";
-import config from "../../config";
-import Chain from "../utils/chain";
-import { ellipsis } from "../utils/utils";
-import { timeout } from "astal";
+import { Gtk } from "ags/gtk4";
+import { timeout } from "ags/time";
 
-export default function NotificationWidget(props: NotificationProps | undefined) {
+export type NotificationProps = {
+  delete: () => void;
+  summary: string;
+  body?: string | undefined;
+  appIcon?: string | undefined;
+  image?: string | undefined;
+  appName: string;
+  time: string;
+  id: number;
+};
+
+export default function NotificationTileView(props: NotificationProps | undefined) {
   if (!props) {
     return <box />
   }
 
-  const summary = new Chain(props.summary)
-    .then((s) => ellipsis(s, config.notifications.text.maxSummaryLength))
-    .get()
-
-  const body = new Chain(props.body)
-    .then((s) => !!s ? ellipsis(s, config.notifications.text.maxBodyLength) : s)
-    .get()
-
   return <revealer
-    setup={(self) => timeout(100, () => self.revealChild = true)}
+    $={(self) => timeout(100, () => self.revealChild = true)}
     transitionType={Gtk.RevealerTransitionType.SLIDE_UP}
     onDestroy={(self) => self.revealChild = false}
   >
@@ -26,9 +26,12 @@ export default function NotificationWidget(props: NotificationProps | undefined)
       cssClasses={["Notification"]}
       hexpand
     >
-      <box vertical hexpand>
+      <box
+        orientation={Gtk.Orientation.VERTICAL}
+        hexpand
+      >
         <box cssClasses={["header"]} hexpand>
-          {props.app_icon && (
+          {props.appIcon && (
             <image
               cssClasses={["app-icon"]}
               file={props.image}
@@ -45,11 +48,7 @@ export default function NotificationWidget(props: NotificationProps | undefined)
           </box>
           <label
             cssClasses={["time"]}
-            label={props.time.toLocaleTimeString("en-US", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: true,
-            })}
+            label={props.time}
           />
           <button
             cssClasses={["close"]}
@@ -74,11 +73,11 @@ export default function NotificationWidget(props: NotificationProps | undefined)
               />
             </box>
           )}
-          <box vertical>
+          <box orientation={Gtk.Orientation.VERTICAL}>
             <box>
               <label
                 cssClasses={["summary"]}
-                label={summary}
+                label={props.summary}
               />
             </box>
             {props.body && (
@@ -88,7 +87,7 @@ export default function NotificationWidget(props: NotificationProps | undefined)
               <box>
                 <label
                   cssClasses={["body"]}
-                  label={body}
+                  label={props.body}
                   maxWidthChars={20}
                 />
               </box>
@@ -99,14 +98,3 @@ export default function NotificationWidget(props: NotificationProps | undefined)
     </box>
   </revealer>
 }
-
-export type NotificationProps = {
-  delete: () => void;
-  summary: string;
-  body?: string | undefined;
-  app_icon?: string | undefined;
-  image?: string | undefined;
-  appName: string;
-  time: Date;
-  id: number;
-};

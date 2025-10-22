@@ -2,7 +2,7 @@ import { Astal, Gdk, Gtk } from "ags/gtk4"
 import WeatherConkyView from "~/src/features/weather/view/weather-conky-view";
 import TimeConkyView from "~/src/features/time/view/time-conky-view";
 
-export default function Conky(gdkmonitor: Gdk.Monitor) {
+export default function ConkyView(gdkmonitor: Gdk.Monitor) {
   return <window
     visible
     anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT}
@@ -27,3 +27,4 @@ export default function Conky(gdkmonitor: Gdk.Monitor) {
     </box>
   </window>
 }
+

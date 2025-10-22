@@ -3,8 +3,8 @@ import app from "ags/gtk4/app"
 import TimeBarView from "../../time/view/time-bar-view"
 import TrayView from "../../tray/view/tray-view"
 import BatteryBarView from "../../battery/view/battery-bar-view"
-import { BrightnessView } from "../../brightness/view/brightness-bar-view" // import Time from "./Time/Time"
-// import { VolumeIconButton, VolumeSlider } from "./Audio/Audio"
+import { BrightnessBarView } from "../../brightness/view/brightness-bar-view" // import Time from "./Time/Time"
+import { VolumeBarView } from "../../volume/view/volume-bar-view"
 
 // Main Bar component
 export default function Bar(gdkmonitor: Gdk.Monitor) {
@@ -23,7 +23,8 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         <TimeBarView />
       </box>
       <box $type="end">
-        <BrightnessView />
+        <VolumeBarView />
+        <BrightnessBarView />
         <BatteryBarView />
         <TrayView />
       </box>

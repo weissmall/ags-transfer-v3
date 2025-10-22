@@ -1,7 +1,7 @@
 import BrightnessVM from "../vm/brightness-vm";
 import { With } from "ags";
 
-export function BrightnessView() {
+export function BrightnessBarView() {
   const vm = new BrightnessVM();
   return <With value={vm.agsState}>
     {(state) => state.isPresent && (
