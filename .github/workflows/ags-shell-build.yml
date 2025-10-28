@@ -46,6 +46,7 @@ jobs:
           wayland-protocols \
           gtk-doc-tools \
           python3 \
+          gjs \
           build-essential \
           pkg-config
           
