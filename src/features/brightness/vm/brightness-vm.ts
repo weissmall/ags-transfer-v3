@@ -1,6 +1,7 @@
 import BaseVM from "~/src/core/mvvm/base-vm";
 import { commandExists } from "~/src/core/system/bin";
 import BrightnessCtlModel from "../model/brightnessctl-model";
+import { toPercentStr } from "~/src/core/utils/text";
 
 type BrightnessState = {
   isPresent: boolean;
@@ -27,7 +28,7 @@ export default class BrightnessVM extends BaseVM<BrightnessState> {
 
   private setBrightness(value: number) {
     this.state.setPartial({
-      tooltipText: `${value}%`
+      tooltipText: `${toPercentStr(value)}%`
     });
   }
 }

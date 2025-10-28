@@ -17,10 +17,23 @@ export function toPercentStr(value: number): string {
   let valueStr: string;
 
   if (value >= 0 && value <= 1) {
-    valueStr = (value.toFixed(2));
+    valueStr = value.toFixed(2);
   } else {
     valueStr = (value / 100).toFixed(2);
   }
 
-  return valueStr.slice(2);
+  try {
+    const [hundred, tens, ..._] = valueStr.split('.')
+
+    if (hundred == "1") {
+      return `${hundred}${tens}`;
+    } else {
+      if (tens == "00") {
+        return "0";
+      }
+      return tens;
+    }
+  } catch {
+    return "";
+  }
 }
