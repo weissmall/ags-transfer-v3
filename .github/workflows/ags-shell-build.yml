@@ -50,15 +50,15 @@ jobs:
       run: |
         cd astal-repo/lib/astal/io
         meson setup build
-        meson install -C build
+        sudo meson install -C build
         
         cd ../gtk3
         meson setup build
-        meson install -C build
+        sudo meson install -C build
         
         cd ../gtk4
         meson setup build
-        meson install -C build
+        sudo meson install -C build
         
     - name: Install AGS dependencies
       run: |
@@ -69,7 +69,7 @@ jobs:
       run: |
         cd ags-repo
         meson setup build
-        meson install -C build
+        sudo meson install -C build
         
     - name: Build AGS Shell
       run: |
