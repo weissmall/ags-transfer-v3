@@ -90,7 +90,7 @@ jobs:
         
     - name: Build AGS Shell
       run: |
-        ags app.ts ags-shell bundle
+        ags bundle app.ts ags-shell --gtk 4
         
     - name: Upload AGS Shell artifact
       uses: actions/upload-artifact@v4
