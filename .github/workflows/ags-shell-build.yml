@@ -2,9 +2,9 @@ name: Build AGS Shell
 
 on:
   push:
-    branches: [ niri ]
+    branches: [ master ]
   pull_request:
-    branches: [ niri ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
