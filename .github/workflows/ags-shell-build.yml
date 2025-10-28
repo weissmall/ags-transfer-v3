@@ -47,6 +47,7 @@ jobs:
           gtk-doc-tools \
           python3 \
           gjs \
+          sass \
           build-essential \
           pkg-config
           
