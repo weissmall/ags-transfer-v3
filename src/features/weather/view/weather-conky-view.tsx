@@ -1,8 +1,7 @@
 import { Gtk } from "ags/gtk4";
-import WeatherVM from "~/src/features/weather/vm/weather-vm";
+import { IWeatherVM } from "./i-weather-vm";
 
-export default function WeatherConkyView() {
-  const vm = new WeatherVM();
+export default function WeatherConkyView({ vm }: { vm: IWeatherVM }) {
   return <box
     orientation={Gtk.Orientation.VERTICAL}
     cssClasses={["weather"]}

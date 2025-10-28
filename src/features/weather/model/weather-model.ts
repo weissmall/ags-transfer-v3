@@ -2,10 +2,11 @@ import { interval, Timer } from "ags/time";
 import { fetch } from "ags/fetch"
 import { Config, getConfig } from "~/config";
 import WeatherEndpoints from "~/src/features/weather/model/weather-endpoints";
-import WeatherDTO from "~/src/features/weather/model/weather-dto";
+import WeatherDTO from "~/src/features/weather/dtos/weather-dto";
+import IWeatherModel from "~/src/features/weather/vm/i-weather-model";
 
 
-export default class WeatherModel {
+export default class WeatherModel implements IWeatherModel {
   private endpoints: WeatherEndpoints
   private config: Config;
 

@@ -1,6 +1,7 @@
 import { Astal, Gdk, Gtk } from "ags/gtk4"
 import WeatherConkyView from "~/src/features/weather/view/weather-conky-view";
 import TimeConkyView from "~/src/features/time/view/time-conky-view";
+import WeatherVM from "~/src/features/weather/vm/weather-vm";
 
 export default function ConkyView(gdkmonitor: Gdk.Monitor) {
   return <window
@@ -23,7 +24,7 @@ export default function ConkyView(gdkmonitor: Gdk.Monitor) {
       cssClasses={["conky"]}
     >
       <TimeConkyView />
-      <WeatherConkyView />
+      <WeatherConkyView vm={new WeatherVM()} />
     </box>
   </window>
 }

@@ -1,15 +1,11 @@
 import WeatherModel from "~/src/features/weather/model/weather-model";
-import WeatherDTO from "~/src/features/weather/model/weather-dto";
+import IWeatherModel from "~/src/features/weather/vm/i-weather-model";
+import WeatherDTO from "~/src/features/weather/dtos/weather-dto";
 import BaseVM from "~/src/core/mvvm/base-vm";
+import { WeatherStateVM } from "~/src/features/weather/view/i-weather-vm";
 
-type WeatherState = {
-  temperature?: string;
-  wind?: string;
-  humidity?: string;
-}
-
-export default class WeatherVM extends BaseVM<WeatherState> {
-  private model: WeatherModel;
+export default class WeatherVM extends BaseVM<WeatherStateVM> {
+  private model: IWeatherModel;
 
   constructor(model?: WeatherModel) {
     super({})
