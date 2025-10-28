@@ -38,7 +38,6 @@ jobs:
           libgtk-3-dev \
           libgtk-layer-shell-dev \
           libgtk-4-dev \
-          libgtk4-layer-shell-dev \
           build-essential \
           pkg-config
           
