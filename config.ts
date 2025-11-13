@@ -38,7 +38,7 @@ export type Config = {
 }
 
 const config = {
-  appTitle: "ags-transfer-dev",
+  appTitle: "Astal",
   notifications: {
     enabled: true,
     dev: false,
